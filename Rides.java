@@ -31,6 +31,7 @@ public class Rides {
     public int getPeople() {
         return people;
     }
+    
 
     //Set methods
     public void setName(String a) {
@@ -60,7 +61,7 @@ public class Rides {
     
     public String toString() {
         if (open) {
-            return "The name of this " + color + " ride is " + name + "and " + people + " people have gone on the ride. It is open.";
+            return "The name of this " + color + " ride is " + name + " and " + people + " people have gone on the ride. It is open.";
         }
         return "The name of this " + color + " ride is " + name + " and " + people + " people have gone on the ride. It is shut down.";
     }
@@ -86,8 +87,8 @@ public class Rides {
         carousel.isOpen();
     
         System.out.println("\nTesting get Methods:");
-        System.out.println("Ferris Wheel name:" + ferrisWheel.getName() + ", color: " + ferrisWheel.getColor() + ", people: " + ferrisWheel.getPeople());
-        System.out.println("Carousel name:" + carousel.getName() + ", color: " + carousel.getColor() + ", people: " + carousel.getPeople());
+        System.out.println("Ferris Wheel name: " + ferrisWheel.getName() + ", color: " + ferrisWheel.getColor() + ", people: " + ferrisWheel.getPeople());
+        System.out.println("Carousel name: " + carousel.getName() + ", color: " + carousel.getColor() + ", people: " + carousel.getPeople());
 
         System.out.println("\nTesting set Methods:");
         ferrisWheel.setColor("purple");
