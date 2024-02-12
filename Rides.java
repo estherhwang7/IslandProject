@@ -1,71 +1,90 @@
 //Caleb Alexandre
+import java.util.*;
+
 public class Rides {
-    
-    //Instance variables
+    // Instance variables
     private String name;
     private String color;
-    private int people;
+    private int totalVisitors;
+    private int availableSeats;
+    private double ticketPrice;
     private boolean open;
 
-    //Constructors
-    public Rides(String n, String c) {
+    // Constructor
+    public Rides(String n, String c, int seats, double price) {
         name = n;
         color = c;
+        availableSeats = seats;
+        ticketPrice = price;
+        totalVisitors = 0;
         open = true;
-        people = 0;
-    }
-    public Rides(String n, String c, int p) {
-        name = n;
-        color = c;
-        open = true;
-        people = p;
     }
 
-    //Get methods
+    // Getter methods
     public String getName() {
         return name;
     }
+
     public String getColor() {
         return color;
     }
-    public int getPeople() {
-        return people;
-    }
-    
 
-    //Set methods
-    public void setName(String a) {
-        name = a;
+    public int getTotalVisitors() {
+        return totalVisitors;
     }
-    public void setColor(String c) {
-        color = c;
+
+    public int getAvailableSeats() {
+        return availableSeats;
     }
-    
-    //Other variables
-    public void shutDown() {            //The ride is being shut down
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    // Method to track ride transactions (ticket sales)
+    public double sellTickets(int quantity) {
+        if (open && quantity <= availableSeats) {
+            totalVisitors += quantity;
+            availableSeats -= quantity;
+            return quantity * ticketPrice;
+        } else {
+            return 0; // Not enough available seats
+        }
+    }
+
+    // Method to simulate ride operation (start ride)
+    public void startRide() {
+        open = true;
+    }
+
+    // Method to shut down the ride
+    public void shutDown() {
         open = false;
     }
-    public void isOpen() {              //Checks if the ride is open or shut down
-        if(open) {
-            System.out.println("This ride is currently operating");
-        }
-        else {
-            System.out.println("This ride has been shut down");
-        }
-    }
-    public void ride(int n) {           //Adds to the total number of people who have been on the ride
-        if(open) {
-            people += n;
-        }
-    }
-    
-    public String toString() {
-        if (open) {
-            return "The name of this " + color + " ride is " + name + " and " + people + " people have gone on the ride. It is open.";
-        }
-        return "The name of this " + color + " ride is " + name + " and " + people + " people have gone on the ride. It is shut down.";
+
+    // Method to check if the ride is open
+    public boolean isOpen() {
+        return open;
     }
 
+    // Method to calculate profit for the ride
+    public double calculateProfit() {
+        return totalVisitors * ticketPrice;
+    }
+
+    // toString method
+    public String toString() {
+        String status;
+        if (open) {
+            status = "open";
+        } else {
+            status = "closed";
+        }
+        return "Ride: " + name + ", Color: " + color + ", Status: " + status + ", Total Visitors: " + totalVisitors;
+    }
+}
+
+    /*
     //Test
     public static void main(String[] args) {
         Rides ferrisWheel = new Rides("Ferris Wheel", "green");
@@ -95,5 +114,7 @@ public class Rides {
         carousel.setName("Bumper Cars");
         System.out.println("Ferris Wheel new color: " + ferrisWheel.getColor());
         System.out.println("Carousel new name: " + carousel.getName());
+        
     }
+    */
 }
